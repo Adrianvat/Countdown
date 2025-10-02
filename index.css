@@ -61,7 +61,7 @@ h1 {
 
   .heart {
     position: absolute;
-    top:45%;
+    top:50%;
     width: calc(var(--heart-size) * 0.7); /* base square width */
     height: calc(var(--heart-size) * 0.7); /* base square height */
     transform: rotate(-45deg); /* rotate the square to make the point */
