@@ -1,0 +1,117 @@
+body{
+    margin: 0;
+    padding: 0;
+}
+:root {
+  --heart-size: 500px;   /* change this to scale the heart */
+    --heart-color: #861b2b; /* change this to any color */
+}
+.background{
+      margin: 0;
+      height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+      color: #fff;
+      text-align: center;
+      overflow: hidden;
+      
+      /* Animated gradient */
+      background: linear-gradient(-45deg, #9a9cff, #8274d3, #413a9e, #221952);
+      background-size: 400% 400%;
+      animation: gradientMove 15s ease infinite;
+}
+
+@keyframes gradientMove {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+h1 {
+    font-size: 3rem;
+    margin-bottom: 10px;
+    text-shadow: 2px 2px 6px rgba(0,0,0,0.3);
+}
+
+.countdown {
+    z-index: 1;
+    font-size: 2rem;
+    font-weight: bold;
+    margin-top: 20px;
+    padding: 20px 30px;
+    background: rgba(0,0,0,0.2);
+    border-radius: 20px;
+    box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+    display: flex;
+    flex-direction: row;
+}
+
+.unit{
+    display: flex;
+    flex-direction: column;
+    margin: 0px 20px;
+}
+
+.unit-name{
+    font-size: small;
+}
+
+  .heart {
+    position: absolute;
+    top:45%;
+    width: calc(var(--heart-size) * 0.7); /* base square width */
+    height: calc(var(--heart-size) * 0.7); /* base square height */
+    transform: rotate(-45deg); /* rotate the square to make the point */
+    background: var(--heart-color);
+    border-radius: 14px; /* soften the edges of the square */
+    box-shadow: 0 6px 18px rgba(0,0,0,0.12);
+    display: inline-block;
+    z-index: 0;
+    animation: pulse 3s ease infinite;
+  }
+
+.heart::before,
+  .heart::after {
+    content: "";
+    position: absolute;
+    width: calc(var(--heart-size) * 0.7);
+    height: calc(var(--heart-size) * 0.7);
+    background: var(--heart-color);
+    border-radius: 50%;
+    top: -50%;
+    left: 0;
+  }
+
+  /* right bump (reuse ::after but moved to the right) */
+  .heart::after {
+    left: 50%;
+    top: 0;
+  }
+
+  /* make the bumps overlap nicely (adjust if you change sizes) */
+  .heart,
+  .heart::before,
+  .heart::after {
+    /* ensure shapes are rendered on top of each other correctly */
+    transform-origin: center;
+  }
+
+  /* Optional: gentle pulse animation */
+  @keyframes pulse {
+    0%   { transform: rotate(-45deg) scale(1); }
+    50%  { transform: rotate(-45deg) scale(1.1); }
+    100% { transform: rotate(-45deg) scale(1); }
+  }
+
+  .heart.pulse {
+    animation: pulse 1.6s ease-in-out infinite;
+  }
+
+  /* Accessibility: give focus outline when keyboard-selected */
+  .heart:focus {
+    outline: 3px dashed rgba(255,255,255,0.6);
+    outline-offset: 6px;
+  }
